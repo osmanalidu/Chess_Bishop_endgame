@@ -16,3 +16,11 @@ def run():
       board.push(legal_moves[0])
     else:
       board.push(legal_moves[0])
+
+  if board.is_checkmate():
+    if board.turn == chess.WHITE:
+      print("White Wins")
+    else:
+      print("Black Wins")
+  else:
+    print("Draw")
