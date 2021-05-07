@@ -21,7 +21,7 @@ class BoardGraphics():
                 p2x = p1x + 75
                 curr = Rectangle(Point(p1x, p1y), Point(p2x, p2y))
                 if (row % 2) != (col % 2):
-                    curr.setFill("green")
+                    curr.setFill("blue")
                 gridRow.append(curr)
             self.boxes.append(gridRow)
 
