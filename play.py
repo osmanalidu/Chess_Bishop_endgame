@@ -2,6 +2,7 @@ import sys
 import chess
 import time
 from boardgrahpics import *
+from ai import minimax
 
 
 def set_up_endgame(f="6k1/8/4KBB1/8/8/8/8/8"):
@@ -33,6 +34,11 @@ def human_move(legal_moves):
     move = chess.Move.from_uci(u_move)
     return move
 
+def ai_move(board):
+  move = minimax(3, board.copy(), True)[1]
+
+  return move
+  
 
 def getFen(board):
     return board.epd().split()[0]
@@ -76,7 +82,8 @@ def run():
         move = None
         if board.turn == chess.WHITE:
             # white move
-            move = legal_moves[0]
+            move = ai_move(board)
+        
         else:
             move = human_move(legal_moves)
 
