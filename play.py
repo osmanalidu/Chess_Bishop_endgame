@@ -65,7 +65,7 @@ def getPiecePositions(board):
 
 
 def run():
-    board = set_up_endgame()
+    board = set_up_endgame(f="7k/8/3B1K2/5B2/8/8/8/8")
     VisualBoard = BoardGraphics()
     VisualBoard.drawGrid()
 
@@ -91,7 +91,7 @@ def run():
         board.push(move)
     game_over_message(board)
     VisualBoard.updateBoard(getPiecePositions(board))
-    time.sleep(500)
+    time.sleep(180)
 
 
 def main():
