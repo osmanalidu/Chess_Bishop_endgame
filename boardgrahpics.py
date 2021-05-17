@@ -32,7 +32,6 @@ class BoardGraphics():
             t.undraw()
         self.texts = []
         for pieceName in list(positions.keys()):
-            print(positions.keys())
             p = positions[pieceName]
             c = self.boxes[p[0]][p[1]].getCenter()
 

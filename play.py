@@ -34,11 +34,12 @@ def human_move(legal_moves):
     move = chess.Move.from_uci(u_move)
     return move
 
-def ai_move(board):
-  move = minimax(3, board.copy(), True)[1]
 
-  return move
-  
+def ai_move(board):
+    move = minimax(3, board.copy(), True)
+    print(move)
+    return move[1]
+
 
 def getFen(board):
     return board.epd().split()[0]
@@ -81,14 +82,13 @@ def run():
         legal_moves = list(board.legal_moves)
         move = None
         if board.turn == chess.WHITE:
-            # white move
+            print("white move")
             move = ai_move(board)
-        
+
         else:
             move = human_move(legal_moves)
-
+        print(move)
         board.push(move)
-        # print(move)
 
     game_over_message(board)
 
