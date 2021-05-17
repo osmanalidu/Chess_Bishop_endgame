@@ -91,7 +91,7 @@ def run():
         board.push(move)
     game_over_message(board)
     VisualBoard.updateBoard(getPiecePositions(board))
-    time.sleep(5000)
+    time.sleep(500)
 
 
 def main():

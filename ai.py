@@ -5,8 +5,10 @@ def heuristic(board):
     # Stalemate = 0, ai win = 1 (black can at best stalemate)
     # Restrict black movement without stalemate
     #Checking is good
-
-    return 1 if board.is_checkmate() else -len(list(board.legal_moves))
+    n_moves = len(list(board.legal_moves))
+    if board.is_checkmate():
+        return 1
+    return -10000 if n_moves == 0 else -len(list(board.legal_moves))
 
 
 def minimax(depth, board, is_max):
