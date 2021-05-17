@@ -30,13 +30,13 @@ def human_move(legal_moves):
 
     # get user move as input /
     # TODO: check if legal
-    u_move = input("Choose a move from the list")
+    u_move = input("Choose a move from the list: ")
     move = chess.Move.from_uci(u_move)
     return move
 
 
 def ai_move(board):
-    move = minimax(3, board.copy(), True)
+    move = minimax(3, chess.Board(board.fen()), True)
     print(move)
     return move[1]
 
@@ -89,8 +89,9 @@ def run():
             move = human_move(legal_moves)
         print(move)
         board.push(move)
-
     game_over_message(board)
+    VisualBoard.updateBoard(getPiecePositions(board))
+    time.sleep(5000)
 
 
 def main():

@@ -6,7 +6,7 @@ def heuristic(board):
     # Restrict black movement without stalemate
     #Checking is good
 
-    return 1 if board.is_checkmate() else -len(board.legal_moves)
+    return 1 if board.is_checkmate() else -len(list(board.legal_moves))
 
 
 def minimax(depth, board, is_max):
@@ -25,7 +25,9 @@ def minimax(depth, board, is_max):
         for move in legal_moves:
             print("max: " + str(move))
             # pass in board after move
-            min_val = minimax(depth-1, board.push(move), False)[0]
+            n_board = chess.Board(board.fen())
+            n_board.push(move)
+            min_val = minimax(depth-1, n_board, False)[0]
             if min_val > score:
                 score = min_val
                 best = move
@@ -39,7 +41,9 @@ def minimax(depth, board, is_max):
         for move in legal_moves:
             print("min: " + str(move))
             # pass in board after move
-            max_val = minimax(depth-1, board.push(move), True)[0]
+            m_board = chess.Board(board.fen())
+            m_board.push(move)
+            max_val = minimax(depth-1, m_board, True)[0]
             if max_val < score:
                 score = max_val
                 best = move
