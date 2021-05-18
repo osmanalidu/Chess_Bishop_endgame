@@ -11,11 +11,8 @@ def heuristic(board):
     return -10000 if n_moves == 0 else -len(list(board.legal_moves))
 
 
+
 def minimax(depth, board, is_max):
-    # print("-----------------------")
-    # print(board)
-    # print("-----------------------")
-    # print("Depth: " + str(depth))
     if depth == 0 or board.is_game_over():
         return heuristic(board), "0000"
 
@@ -52,11 +49,9 @@ def minimax(depth, board, is_max):
         return score, best
 
 
+
+
 def ab_pruning(depth, board, alpha, beta, is_max):
-    # print("-----------------------")
-    # print(board)
-    # print("-----------------------")
-    # print("Depth: " + str(depth))
     if depth == 0 or board.is_game_over():
         return heuristic(board), "0000"
 

@@ -35,11 +35,11 @@ def human_move(legal_moves):
     return move
 
 
-def ai_move(board, is_minimax):
+def ai_move(board, is_minimax, is_max):
     if is_minimax:
-        move = minimax(3, chess.Board(board.fen()), True)
+        move = minimax(3, chess.Board(board.fen()), is_max)
     else:
-        move = ab_pruning(3, chess.Board(board.fen()), -1000, 1000, True)
+        move = ab_pruning(3, chess.Board(board.fen()), -1000, 1000, is_max)
     return move[1]
 
 
@@ -84,12 +84,15 @@ def run(is_minimax):
         legal_moves = list(board.legal_moves)
         move = None
         if board.turn == chess.WHITE:
-            move = ai_move(board, is_minimax)
+            move = ai_move(board, is_minimax, True)
 
         else:
             move = human_move(legal_moves)
+            # Uncomment line below and comment line above for AI to play against AI
+            #move = ai_move(board, is_minimax, False)
         # print(move)
         board.push(move)
+        time.sleep(2)
     game_over_message(board)
     VisualBoard.updateBoard(getPiecePositions(board))
     time.sleep(180)
