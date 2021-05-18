@@ -5,7 +5,7 @@ from boardgrahpics import *
 from ai import minimax, ab_pruning
 
 
-def set_up_endgame(f="6k1/8/4KBB1/8/8/8/8/8"):
+def set_up_endgame(f="7k/8/3B1K2/5B2/8/8/8/8"):
     # 8 moves to mate ="6k1/8/4KBB1/8/8/8/8/8"
     # 3 moves to mate = "7k/8/3B1K2/5B2/8/8/8/8"
     # - Kg6, kg8, Be6+, kh8, Be5#
@@ -84,12 +84,14 @@ def run(is_minimax):
         legal_moves = list(board.legal_moves)
         move = None
         if board.turn == chess.WHITE:
+            print("White's Turn: \n")
             move = ai_move(board, is_minimax, True)
 
         else:
+            print("Black's Turn: \n")
             move = human_move(legal_moves)
             # Uncomment line below and comment line above for AI to play against AI
-            #move = ai_move(board, is_minimax, False)
+            # move = ai_move(board, is_minimax, False)
         # print(move)
         board.push(move)
         time.sleep(2)
