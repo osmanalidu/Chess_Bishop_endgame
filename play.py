@@ -2,7 +2,7 @@ import sys
 import chess
 import time
 from boardgrahpics import *
-from ai import minimax
+from ai import minimax, ab_pruning
 
 
 def set_up_endgame(f="6k1/8/4KBB1/8/8/8/8/8"):
@@ -35,9 +35,11 @@ def human_move(legal_moves):
     return move
 
 
-def ai_move(board):
-    move = minimax(3, chess.Board(board.fen()), True)
-    print(move)
+def ai_move(board, is_minimax):
+    if is_minimax:
+        move = minimax(3, chess.Board(board.fen()), True)
+    else:
+        move = ab_pruning(3, chess.Board(board.fen()), -1000, 1000, True)
     return move[1]
 
 
@@ -64,8 +66,8 @@ def getPiecePositions(board):
     return piecePlaces
 
 
-def run():
-    board = set_up_endgame(f="7k/8/3B1K2/5B2/8/8/8/8")
+def run(is_minimax):
+    board = set_up_endgame()
     VisualBoard = BoardGraphics()
     VisualBoard.drawGrid()
 
@@ -82,12 +84,11 @@ def run():
         legal_moves = list(board.legal_moves)
         move = None
         if board.turn == chess.WHITE:
-            print("white move")
-            move = ai_move(board)
+            move = ai_move(board, is_minimax)
 
         else:
             move = human_move(legal_moves)
-        print(move)
+        # print(move)
         board.push(move)
     game_over_message(board)
     VisualBoard.updateBoard(getPiecePositions(board))
@@ -95,7 +96,11 @@ def run():
 
 
 def main():
-    run()
+    user_inp = input("Enter 0 for minimax or 1 for alpha-beta pruning:\n")
+    if user_inp == "1":
+        run(False)
+    else:
+        run(True)
 
 
 if __name__ == "__main__":

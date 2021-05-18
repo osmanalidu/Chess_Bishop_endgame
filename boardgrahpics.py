@@ -54,6 +54,7 @@ class BoardGraphics():
 # def main():
 #     b = BoardGraphics()
 #     b.drawGrid()
+#     time.sleep(180)
 
 
 # if __name__ == "__main__":
